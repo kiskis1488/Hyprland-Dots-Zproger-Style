@@ -1,0 +1,203 @@
+{
+"cpu": {
+	"format": "󰍛 {usage}%",
+	"interval": 1,
+	"min-length": 5,
+	"format-alt-click": "click",
+	"format-alt": "󰍛 {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+	"format-icons": [
+		"▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"
+	],
+	"on-click-right": "gnome-system-monitor",
+},
+
+"temperature": {
+	"interval": 10,
+	"tooltip": true,
+	"hwmon-path": [
+		"/sys/class/hwmon/hwmon1/temp1_input",
+		"/sys/class/thermal/thermal_zone0/temp"
+	],
+	"critical-threshold": 82,
+	"format-critical": "{temperatureC}°C {icon}",
+	"format": "{icon} {temperatureC}°C",
+	"format-icons": [
+		""
+	],
+	"on-click-right": "kitty --title nvtop sh -c 'nvtop'"
+},
+
+"memory": {
+	"interval": 10,
+	"format": "󰾆 {used:0.1f} Gib",
+	"format-alt": "󰾆 {percentage}%",
+	"format-alt-click": "click",
+	"tooltip": true,
+	"tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+	"on-click-right": "kitty --title btop sh -c 'btop'"
+},
+
+"battery": {
+	"align": 0,
+	"rotate": 0,
+	"full-at": 100,
+	"design-capacity": false,
+	"states": {
+		"good": 95,
+		"warning": 20,
+		"critical": 5
+	},
+	"format": "{icon} {capacity}%",
+	"format-charging": " {capacity}%",
+	"format-plugged": "󱘖 {capacity}%",
+	"format-alt-click": "click",
+	"format-icons": [
+		"", "", "", "", ""
+	],
+	"format-time": "{H}h {M}min",
+	"tooltip": true,
+	"tooltip-format": "{timeTo} {power}w",
+},
+
+"clock": {
+	"interval": 1,
+    "format": "󱑓 {:%H:%M}", // 24H
+	"format-alt": "󱑓 {:%H:%M   %Y, %d %B, %A}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "year",
+		"mode-mon-col": 3,
+		"weeks-pos": "right",
+		"on-scroll": 1,
+		"format": {
+			"months": "<span color='#ffead3'><b>{}</b></span>",
+			"days": "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+			"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	}
+},
+
+// Keyboard
+"hyprland/language": {
+	"format": "{}",
+	"format-en": "en",
+	"format-ru": "ru",
+	"keyboard-name": "video-bus",
+	"on-click": "hyprctl switchxkblayout video-bus next"
+},
+
+"keyboard-state": {
+	"capslock": true,
+	"format": {
+		"numlock": "N {icon}",
+		"capslock": "󰪛 {icon}",
+	},
+	"format-icons": {
+		"locked": "",
+		"unlocked": ""
+	},
+},
+
+"network": {
+	"format": "{ifname}",
+	"format-wifi": "{icon}",
+	"format-ethernet": "󰌘",
+	"format-disconnected": "󰌙",
+	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+	"format-linked": "󰈁 {ifname} (No IP)",
+	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-disconnected": "󰌙 Disconnected",
+	"max-length": 30,
+	"format-icons": [
+		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+	],
+	"on-click": "bash '/home/cat/.config/rofi/rofi-wifi-menu.sh'"
+},
+
+"pulseaudio": {
+	"format": "{icon} {volume}%",
+	"format-muted": "{icon} {volume}%",
+	"format-icons": {
+		"headphone": "",
+		"hands-free": "",
+		"headset": "",
+		"phone": "",
+		"portable": "",
+		"car": "",
+		"default": [
+			"", "", "󰕾",  ""
+		],
+		"ignored-sinks": [
+			"Easy Effects Sink"
+		],
+	},
+	"scroll-step": 5.0,
+	"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+",
+	"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
+	"tooltip-format": "{icon} {desc} | {volume}%",
+	"smooth-scrolling-threshold": 0.1,
+},
+
+"pulseaudio#microphone": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": " {volume}%",
+	"on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+	"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+	"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+	"tooltip-format": "{source_desc} | {source_volume}%",
+	"scroll-step": 5,
+},
+
+"tray": {
+	"icon-size": 20,
+	"spacing": 4,
+},
+
+// Custom
+"custom/menu": {
+	"format": " ",
+	"on-click": "pkill rofi || rofi -show drun",
+	"tooltip": true,
+	"tooltip-format": "App menu",
+},
+
+"custom/power": {
+	"format": "⏻ ",
+	"on-click": "pkill rofi || rofi -show p -modi p:rofi-power-menu",
+	"tooltip": true,
+	"tooltip-format": "Power menu",
+},
+
+"custom/separator#line": {
+	"format": "|",
+	"interval": "once",
+	"tooltip": false
+},
+"custom/separator": {
+	"format": " ",
+	"interval": "once",
+	"tooltip": false
+},
+
+// Workspaces
+"hyprland/workspaces": {
+	"active-only": false,
+	"all-outputs": true,
+	"format": "{icon}",
+	"show-special": false,
+	"on-click": "activate",
+    "persistent-workspaces": {
+      "*": 7
+	},
+	"format-icons": {
+		// "active": "",
+		// "default": "",
+	},
+},
+
+}

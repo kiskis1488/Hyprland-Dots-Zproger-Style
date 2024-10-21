@@ -1,0 +1,44 @@
+{
+"include": [
+  "$HOME/.config/waybar/modules",
+  ],
+"layer": "top",
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+
+// Margin
+"margin-top": 5,
+"margin-left": 9,
+"margin-right": 9,
+"margin-bottom": -4,
+
+// Module location
+"modules-left": [
+	"custom/menu",
+	"custom/separator",
+	"hyprland/workspaces",
+],
+
+"modules-center": [
+	"temperature",
+	"custom/separator",
+	"memory",
+	"custom/separator",
+	"cpu",
+],
+
+"modules-right": [
+	"battery",
+	"custom/separator",
+	"pulseaudio",
+	"custom/separator",
+	"hyprland/language",
+	"custom/separator",
+	"clock",
+	"network",
+	"custom/power",
+	"tray",
+],
+}
